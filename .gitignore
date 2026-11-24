@@ -1,0 +1,19 @@
+node_modules/
+dist/
+chrome-temp/
+*.log
+.DS_Store
+Thumbs.db
+
+# Screenshots and temporary test scripts
+screenshot-*.png
+preview-*.png
+shot-*.png
+test-*.cjs
+take-screenshots.cjs
+
+# Root level raw video duplicates (videos are stored in public/videos/)
+/*.MOV
+/*.mov
+/*.MP4
+/*.mp4
