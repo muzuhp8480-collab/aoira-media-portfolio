@@ -18,7 +18,6 @@ import { PortfolioLetterAnimation } from './intro-animation.js';
 // =============================================================================
 // DOM References & State
 // =============================================================================
-let activeHqProjectId = 'hq-01';
 let activeCategoryKey = 'perfume';
 let letterAnimationInstance = null;
 
@@ -93,93 +92,15 @@ function renderAllGalleries() {
 }
 
 /**
- * 1st Work Section: High Quality Flagship Screen & Switcher
+ * 1st Work Section: High Quality Video Gallery
  */
 function renderHighQuality() {
-  const mainScreen = document.getElementById('hq-main-screen');
-  const thumbnailsList = document.getElementById('hq-thumbnails-list');
-  const countBadge = document.getElementById('hq-project-count');
   const hqGallery = document.getElementById('high-quality-gallery');
-
-  if (!mainScreen || !thumbnailsList) return;
+  if (!hqGallery) return;
 
   const hqVideos = PORTFOLIO_VIDEOS.filter(v => v.tier === 'high');
-  if (countBadge) {
-    countBadge.textContent = `${hqVideos.length} flagship productions`;
-  }
-
-  // Find active project
-  const currentProject = hqVideos.find(v => v.id === activeHqProjectId) || hqVideos[0];
-  if (currentProject) {
-    activeHqProjectId = currentProject.id;
-    renderHqScreen(currentProject, mainScreen);
-  }
-
-  // Render thumbnails
-  thumbnailsList.innerHTML = hqVideos.map(project => `
-    <button type="button" class="hq-thumb-btn ${project.id === activeHqProjectId ? 'active' : ''}" data-project-id="${project.id}">
-      <div class="hq-thumb-preview">
-        ${project.videoSource ? `
-          <video src="${project.videoSource}" muted playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>
-        ` : `
-          <span>${project.aspectRatio}</span>
-        `}
-      </div>
-      <div class="hq-thumb-info">
-        <span class="hq-thumb-title">${project.title}</span>
-      </div>
-    </button>
-  `).join('');
-
-  // Thumb clicks
-  thumbnailsList.querySelectorAll('.hq-thumb-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-project-id');
-      const selected = hqVideos.find(v => v.id === id);
-      if (selected) {
-        activeHqProjectId = id;
-        renderHqScreen(selected, mainScreen);
-        thumbnailsList.querySelectorAll('.hq-thumb-btn').forEach(b => {
-          b.classList.toggle('active', b.getAttribute('data-project-id') === id);
-        });
-      }
-    });
-  });
-
-  // Also render high quality grid cards
-  if (hqGallery) {
-    hqGallery.innerHTML = hqVideos.map(video => createVideoCardMarkup(video)).join('');
-    attachCardEvents(hqGallery);
-  }
-}
-
-function renderHqScreen(project, container) {
-  const hasVideo = Boolean(project.videoSource);
-  container.innerHTML = `
-    <div class="hq-screen-inner ${hasVideo ? 'has-video-source' : ''}">
-      ${hasVideo ? `
-        <video class="hq-ambient-video" src="${project.videoSource}" muted loop autoplay playsinline preload="metadata"></video>
-        <div class="hq-screen-overlay"></div>
-      ` : ''}
-      <div class="card-top-badges">
-        <span class="badge-ratio">${project.aspectRatio}</span>
-        <span class="badge-duration">${project.duration || '4K Cinema'}</span>
-      </div>
-      <h3 class="hq-screen-title">${project.title}</h3>
-      <p class="hq-screen-caption">${project.caption}</p>
-      <button type="button" class="hq-screen-play-btn" data-play-id="${project.id}">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-        <span>Watch Flagship Production</span>
-      </button>
-    </div>
-  `;
-
-  const playBtn = container.querySelector('.hq-screen-play-btn');
-  playBtn?.addEventListener('click', () => {
-    openVideoModal(project);
-  });
+  hqGallery.innerHTML = hqVideos.map(video => createVideoCardMarkup(video)).join('');
+  attachCardEvents(hqGallery);
 }
 
 /**
