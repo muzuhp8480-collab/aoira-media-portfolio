@@ -24,6 +24,7 @@ let letterAnimationInstance = null;
 document.addEventListener('DOMContentLoaded', () => {
   setupLetterAnimation();
   setupNavigation();
+  setupHeroParallax();
   renderAllGalleries();
   setupCategoryTabs();
   setupWhatsAppForm();
@@ -40,13 +41,38 @@ function setupLetterAnimation() {
 }
 
 // =============================================================================
+// Subtle Parallax Scroll for Intro Atmosphere
+// =============================================================================
+function setupHeroParallax() {
+  const clusters = document.querySelectorAll('.decor-cluster[data-parallax]');
+  if (!clusters.length) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        if (scrollY < window.innerHeight * 1.3) {
+          clusters.forEach(cluster => {
+            const factor = parseFloat(cluster.getAttribute('data-parallax') || '0');
+            cluster.style.transform = `translate3d(0, ${Math.round(scrollY * factor)}px, 0)`;
+          });
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+// =============================================================================
 // 2. Navigation & Mobile Drawer
 // =============================================================================
 function setupNavigation() {
   const header = document.getElementById('site-header');
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-cta-wrap a');
 
   // Sticky header transition on scroll
   window.addEventListener('scroll', () => {
