@@ -46,10 +46,7 @@ export class PortfolioLetterAnimation {
       });
     });
 
-    // Auto-trigger letter fill animation on initial page load
-    setTimeout(() => {
-      this.play(false);
-    }, 400);
+    // Auto-trigger is controlled by setupBrandSplash callback
   }
 
   play(forceReset = false) {
@@ -138,4 +135,53 @@ export class PortfolioLetterAnimation {
       this.glassCard.style.boxShadow = '';
     }, 700);
   }
+}
+
+/**
+ * First-Load Brand Intro Splash Animation
+ * Shows "Aiora Media" animated with luminous glow, then dissolves out smoothly.
+ */
+export function setupBrandSplash(onComplete) {
+  const overlay = document.getElementById('brand-intro-overlay');
+  const loaderBar = document.getElementById('intro-loader-bar');
+  if (!overlay) {
+    if (onComplete) onComplete();
+    return;
+  }
+
+  let dissolved = false;
+
+  const dissolveSplash = () => {
+    if (dissolved) return;
+    dissolved = true;
+    overlay.classList.add('is-dissolving');
+
+    // Trigger hero letter animation as splash dissolves
+    setTimeout(() => {
+      if (onComplete) onComplete();
+    }, 280);
+
+    // Remove from DOM layout after fade out completes
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 750);
+  };
+
+  // Start loader bar progress
+  if (loaderBar) {
+    loaderBar.style.width = '0%';
+    loaderBar.style.transition = 'width 1.7s cubic-bezier(0.2, 0.8, 0.25, 1)';
+    requestAnimationFrame(() => {
+      loaderBar.style.width = '100%';
+    });
+  }
+
+  // Auto-dissolve after 1.9s
+  const autoTimer = setTimeout(dissolveSplash, 1900);
+
+  // Allow clicking or tapping anywhere to skip immediately
+  overlay.addEventListener('click', () => {
+    clearTimeout(autoTimer);
+    dissolveSplash();
+  });
 }

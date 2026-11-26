@@ -2042,3 +2042,290 @@ body {
     margin: 0 6px;
   }
 }
+
+
+/* ==========================================================================
+   BRAND INTRO ANIMATION SCREEN (FIRST LOAD SPLASH)
+   ========================================================================== */
+.brand-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, rgba(220, 235, 252, 0.96) 0%, rgba(195, 222, 250, 0.97) 100%);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px);
+  padding: 24px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+  cursor: pointer;
+}
+
+.brand-intro-overlay.is-dissolving {
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.intro-glass-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 44px 56px;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-xl);
+  box-shadow: 0 35px 80px rgba(15, 45, 85, 0.14), inset 0 2px 3px rgba(255, 255, 255, 1);
+  max-width: 90vw;
+  width: 480px;
+  animation: introCardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes introCardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intro-logo-wrap {
+  margin-bottom: 20px;
+}
+
+.intro-brand-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(28, 117, 188, 0.35));
+  animation: introLogoPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes introLogoPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 18px rgba(28, 117, 188, 0.25));
+  }
+  100% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 12px 30px rgba(28, 117, 188, 0.45));
+  }
+}
+
+.intro-text-wrap {
+  margin-bottom: 24px;
+}
+
+.intro-brand-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+  color: var(--color-navy-primary);
+  text-transform: uppercase;
+}
+
+.intro-title-part {
+  display: inline-block;
+}
+
+.intro-part-1 {
+  color: var(--color-navy-primary);
+}
+
+.intro-part-2 {
+  color: var(--color-accent-blue);
+  background: linear-gradient(135deg, #0f284e 0%, #1c75bc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro-tagline {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-navy-muted);
+  margin-top: 10px;
+}
+
+.intro-loader-track {
+  width: 140px;
+  height: 3px;
+  background: rgba(15, 40, 78, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.intro-loader-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #1c75bc 0%, #25d366 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 10px rgba(28, 117, 188, 0.6);
+}
+
+.intro-skip-hint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-slate-subtle);
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   HERO AI STATEMENT & QUOTE (MINIMAL & ELEVATED)
+   ========================================================================== */
+.hero-ai-statement-wrap {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-quote-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 8px 25px rgba(15, 45, 85, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.hero-quote-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 30px rgba(15, 45, 85, 0.1);
+}
+
+.quote-spark {
+  color: var(--color-accent-blue);
+  font-size: 0.85rem;
+}
+
+.quote-text {
+  font-family: var(--font-heading);
+  font-size: clamp(0.92rem, 2.2vw, 1.08rem);
+  font-weight: 700;
+  color: var(--color-navy-primary);
+  letter-spacing: 0.02em;
+}
+
+.hero-ai-description {
+  font-family: var(--font-body);
+  font-size: clamp(0.92rem, 1.8vw, 1.02rem);
+  color: var(--color-navy-muted);
+  line-height: 1.65;
+  margin-top: 16px;
+  max-width: 620px;
+}
+
+.hero-ai-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hero-ai-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--border-radius-pill);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-slate-subtle);
+  letter-spacing: 0.04em;
+  transition: all var(--transition-fast);
+}
+
+.hero-ai-tag:hover {
+  color: var(--color-navy-primary);
+  border-color: var(--color-navy-primary);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+  .intro-glass-card {
+    padding: 32px 20px;
+    width: calc(100vw - 32px);
+  }
+
+  .intro-brand-logo {
+    height: 38px;
+  }
+
+  .intro-brand-title {
+    font-size: 1.85rem;
+    gap: 8px;
+  }
+
+  .intro-tagline {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-ai-statement-wrap {
+    margin-top: 24px;
+    padding: 0 4px;
+  }
+
+  .hero-quote-pill {
+    padding: 8px 16px;
+    gap: 8px;
+  }
+
+  .quote-text {
+    font-size: 0.88rem;
+  }
+
+  .hero-ai-description {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+
+  .hero-ai-tag {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+  }
+}

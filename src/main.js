@@ -13,7 +13,7 @@
 
 import { STUDIO_CONFIG } from './config.js';
 import { PORTFOLIO_VIDEOS, CATEGORY_VIDEOS } from './portfolio-data.js';
-import { PortfolioLetterAnimation } from './intro-animation.js';
+import { PortfolioLetterAnimation, setupBrandSplash } from './intro-animation.js';
 
 // =============================================================================
 // DOM References & State
@@ -22,7 +22,6 @@ let activeCategoryKey = 'perfume';
 let letterAnimationInstance = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupLetterAnimation();
   setupNavigation();
   renderAllGalleries();
   setupCategoryTabs();
@@ -30,13 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
   setupVideoModal();
   setupFooterYear();
   setupScrollSpy();
+
+  // Initialize kinetic letter animation and bind to brand intro splash
+  letterAnimationInstance = new PortfolioLetterAnimation();
+  setupBrandSplash(() => {
+    letterAnimationInstance?.play(true);
+  });
 });
 
 // =============================================================================
 // 1. Kinetic Letter Fill Animation (Reference 2)
 // =============================================================================
 function setupLetterAnimation() {
-  letterAnimationInstance = new PortfolioLetterAnimation();
+  // Controlled via setupBrandSplash lifecycle
 }
 
 // =============================================================================
