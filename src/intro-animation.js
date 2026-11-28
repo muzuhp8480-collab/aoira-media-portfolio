@@ -63,10 +63,7 @@ export function initIntroAndCanvas() {
   const bgCanvas = document.getElementById('bg-canvas');
   const cursorGlow = document.getElementById('cursor-glow');
 
-  // Wire replay buttons
-  document.getElementById('replay-btn-hero')?.addEventListener('click', playIntro);
-  document.getElementById('replay-btn-nav')?.addEventListener('click', playIntro);
-  document.getElementById('replay-zoom-btn')?.addEventListener('click', replayHeroZoomBloom);
+  // Click on MEDIA / PORTFOLIO stage replays Zoom & Color Bloom
   document.getElementById('mp-stage')?.addEventListener('click', replayHeroZoomBloom);
 
   // Skip intro on overlay click
