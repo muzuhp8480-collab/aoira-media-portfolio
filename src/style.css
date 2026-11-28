@@ -112,9 +112,12 @@ body.color-bloomed #cursor-glow {
 
 .intro-logo {
   opacity: 0;
-  transform: scale(0.32);
-  filter: grayscale(100%) brightness(0.65);
+  transform: scale(0.35) translateZ(0);
   animation: zoomColorBloom 2.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .intro-aura {
@@ -131,18 +134,18 @@ body.color-bloomed #cursor-glow {
 @keyframes zoomColorBloom {
   0% {
     opacity: 0;
-    transform: scale(0.32);
-    filter: grayscale(100%) brightness(0.55) blur(8px);
+    transform: scale(0.35) translateZ(0);
+    filter: brightness(0.85);
   }
-  45% {
+  38% {
     opacity: 1;
-    transform: scale(0.74);
-    filter: grayscale(100%) brightness(0.95) blur(0px);
+    transform: scale(0.78) translateZ(0);
+    filter: brightness(1);
   }
   100% {
     opacity: 1;
-    transform: scale(1.02);
-    filter: grayscale(0%) brightness(1) drop-shadow(0 0 42px rgba(28, 117, 188, 0.85));
+    transform: scale(1.02) translateZ(0);
+    filter: drop-shadow(0 0 38px rgba(28, 117, 188, 0.75));
   }
 }
 
