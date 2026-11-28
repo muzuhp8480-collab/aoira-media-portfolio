@@ -1,88 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aiora Media | Portfolio 2026 — High, Medium &amp; Base Quality Videos</title>
-  <meta name="description" content="Aiora Media Creative Studio portfolio featuring High Quality, Medium Quality, and Base Quality video productions, Perfume, Product, Service &amp; Food videos." />
+  <title>aiora Media — AI Video Production House</title>
+  <meta name="description" content="aiora Media Creative Studio portfolio featuring High Quality, Medium Quality, and Base Quality video productions, Perfume, Product, Service &amp; Food videos." />
   
   <!-- Favicon using brand mark -->
   <link rel="icon" type="image/png" href="/assets/aiora-logo-blue.png" />
 
-  <!-- Google Fonts: Bebas Neue, Plus Jakarta Sans & Inter -->
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/src/style.css" />
 </head>
-<body class="theme-reference-luminous antialiased">
+<body class="antialiased selection:bg-[#1C75BC] selection:text-white">
 
-  <!-- ===================================================================
-       BRAND INTRO ANIMATION SCREEN (FIRST LOAD SPLASH & DISSOLVE)
-       "first Aiora Media ennullath oru animation ayi venam,
-        first thanne website on akkumbol pinne ath marjh ponam"
-       =================================================================== -->
-  <aside class="brand-intro-overlay" id="brand-intro-overlay" aria-label="Aiora Media Intro Animation">
-    <div class="intro-glass-card">
-      <div class="intro-logo-wrap">
-        <img src="/assets/aiora-logo-blue.png" alt="Aiora Media Logo" class="intro-brand-logo" />
+  <!-- Monochrome-to-Color Flowing Silk Waves Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+  <div id="cursor-glow" class="hidden sm:block"></div>
+
+  <!-- Black -> Zoom-In -> Color Bloom Large-Logo Intro -->
+  <div id="intro-overlay" class="fixed inset-0 z-50 flex items-center justify-center px-6" aria-label="aiora Media Intro">
+    <div class="relative flex items-center justify-center">
+      <div id="intro-aura-el" class="intro-aura"></div>
+      <div id="intro-logo-el" class="intro-logo relative flex items-center justify-center">
+        <img
+          src="/assets/aiora-logo-blue.png"
+          alt="aiora Media"
+          class="w-72 sm:w-[460px] md:w-[540px] max-w-[88vw] h-auto object-contain select-none"
+        />
       </div>
-      <div class="intro-text-wrap">
-        <h2 class="intro-brand-title">
-          <span class="intro-title-part intro-part-1">AIORA</span>
-          <span class="intro-title-part intro-part-2">MEDIA</span>
-        </h2>
-        <p class="intro-tagline">Cinematic Visuals &bull; AI Video Creation</p>
-      </div>
-      <div class="intro-loader-track" aria-hidden="true">
-        <div class="intro-loader-bar" id="intro-loader-bar"></div>
-      </div>
-      <span class="intro-skip-hint">Tap anywhere to skip</span>
     </div>
-  </aside>
-  
-  <!-- Atmospheric Background Ambient Glow Layers (Matching Reference 1 Dreamy Aura) -->
-  <div class="ambient-gradient-mesh" aria-hidden="true">
-    <div class="mesh-orb mesh-orb-1"></div>
-    <div class="mesh-orb mesh-orb-2"></div>
-    <div class="mesh-orb mesh-orb-3"></div>
-    <div class="mesh-orb mesh-orb-4"></div>
   </div>
 
-  <!-- Giant Atmospheric Blurred Background Typographic Watermark (Exact Reference 1 Match) -->
-  <div class="blurred-bg-typography" aria-hidden="true">
-    <span class="blurred-word">PORTFOLIO</span>
-  </div>
+  <!-- Floating Glass Navbar -->
+  <header class="fixed top-0 inset-x-0 z-40" id="site-header">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 pt-4">
+      <nav class="flex items-center justify-between rounded-full px-5 py-2.5 bg-[#091426]/75 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/40">
+        <a href="#home" class="flex items-center shrink-0 mr-4 sm:mr-6" aria-label="aiora Media Home">
+          <img
+            src="/assets/aiora-logo-blue.png"
+            alt="aiora Media"
+            class="h-7 sm:h-8 w-auto object-contain"
+          />
+        </a>
 
-  <!-- STICKY FROSTED GLASS NAVIGATION -->
-  <header class="site-header" id="site-header">
-    <div class="nav-container">
-      <a href="#home" class="nav-brand" aria-label="Aiora Media Home">
-        <img src="/assets/aiora-logo-blue.png" alt="Aiora Media" class="nav-logo" />
-      </a>
+        <div class="hidden md:flex items-center gap-5 text-xs sm:text-sm font-medium text-slate-300">
+          <a href="#home" class="nav-link active hover:text-white transition-colors">Home</a>
+          <a href="#high-quality" class="nav-link hover:text-white transition-colors">High Quality</a>
+          <a href="#medium-quality" class="nav-link hover:text-white transition-colors">Medium Quality</a>
+          <a href="#base-quality" class="nav-link hover:text-white transition-colors">Base Quality</a>
+          <a href="#categories" class="nav-link hover:text-white transition-colors">Categories</a>
+          <a href="#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+        </div>
 
-      <!-- Desktop Navigation Menu (Exact Requested Order: High -> Medium -> Base -> Categories -> Contact) -->
-      <nav class="desktop-nav" aria-label="Main Navigation">
-        <ul class="nav-list">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#high-quality" class="nav-link">High Quality</a></li>
-          <li><a href="#medium-quality" class="nav-link">Medium Quality</a></li>
-          <li><a href="#base-quality" class="nav-link">Base Quality</a></li>
-          <li><a href="#categories" class="nav-link">Categories</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+        <div class="flex items-center gap-3">
+          <button
+            id="replay-btn-nav"
+            type="button"
+            class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-white transition-colors px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-[#1C75BC]"></span>
+            Replay Intro
+          </button>
+          <a
+            href="#contact"
+            class="px-4 py-1.5 rounded-full bg-[#1C75BC] hover:bg-[#2589DA] text-white text-xs sm:text-sm font-medium transition-all shadow-md shadow-[#1C75BC]/45 active:scale-95"
+          >
+            Chat on WhatsApp
+          </a>
+          <!-- Mobile Toggle -->
+          <button class="md:hidden mobile-toggle p-1 text-slate-300 hover:text-white focus:outline-none" id="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+        </div>
       </nav>
-
-      <!-- Mobile Toggle -->
-      <div class="nav-actions">
-        <button class="mobile-toggle" id="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-        </button>
-      </div>
     </div>
 
     <!-- Mobile Drawer Menu -->
@@ -98,11 +97,6 @@
             <li><a href="#contact" class="mobile-nav-link">Contact &amp; WhatsApp</a></li>
           </ul>
         </nav>
-        <div class="mobile-cta-wrap">
-          <a href="#contact" class="btn btn-primary btn-block">
-            <span>Chat on WhatsApp</span>
-          </a>
-        </div>
       </div>
     </div>
   </header>
@@ -111,106 +105,71 @@
   <main id="main-content">
 
     <!-- ===================================================================
-         SECTION 1: HERO (REFERENCE 1 THEME + REFERENCE 2 LETTER FILL ANIMATION)
-         Minimal, Pure Frosted Glass Card
+         SECTION 1: HERO (ZOOM-IN & COLOR BLOOM STACKED MEDIA / PORTFOLIO)
          =================================================================== -->
-    <section id="home" class="section hero-section revealable">
-      <div class="container hero-container text-center">
+    <section id="home" class="relative z-10 min-h-screen flex flex-col items-center justify-center pt-28 pb-16 px-5 text-center">
 
-        <!-- Top Creative Studio Indicator Badge (AIORA MEDIA - AI VIDEO PRODUCTION HOUSE) -->
-        <div class="hero-top-badge-wrap slide-from-top">
-          <div class="hero-creative-badge">
-            <span class="live-pulse-dot" aria-hidden="true"></span>
-            <span class="creative-badge-lead">AIORA MEDIA</span>
-            <span class="creative-badge-sep">-</span>
-            <span class="creative-badge-tag">AI VIDEO PRODUCTION HOUSE</span>
-          </div>
+      <!-- AI Video Production House Badge -->
+      <div class="reveal-up d-1 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-4">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#60A5FA] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-[#1C75BC]"></span>
+        </span>
+        <span class="text-[11px] font-semibold tracking-[0.22em] uppercase text-sky-200/95">
+          AI Video Production House
+        </span>
+      </div>
+
+      <!-- Compact Quote Above (Not Oversized) -->
+      <p class="reveal-up d-2 text-base sm:text-xl font-normal tracking-wide text-slate-200/90 max-w-md mb-8">
+        Frames beyond <span class="text-sky-300 font-medium">imagination.</span>
+      </p>
+
+      <!-- Stacked MEDIA (Top) + PORTFOLIO (Bottom) Zoom-In & Color Bloom Stage -->
+      <div id="mp-stage" class="reveal-up d-3 mp-stage mb-10 select-none" title="Click to replay Zoom & Color Bloom">
+        <div class="media-top text-xs sm:text-sm font-bold uppercase mb-2">
+          MEDIA
         </div>
 
-        <!-- Central Frosted Glass Card -->
-        <div class="hero-reference-card-container">
-          <div class="hero-glass-card" id="hero-glass-card" title="Click to replay animation">
-            
-            <!-- Animated Wordmark (Reference 2: Outline -> Solid Letter Fill) -->
-            <div class="hero-portfolio-word-wrap">
-              <h1 class="portfolio-animated-word" id="portfolio-word" aria-label="PORTFOLIO">
-                <span class="anim-letter" data-letter="P" data-index="0">
-                  <span class="char-outline" aria-hidden="true">P</span>
-                  <span class="char-fill" aria-hidden="true">P</span>
-                </span>
-                <span class="anim-letter" data-letter="O" data-index="1">
-                  <span class="char-outline" aria-hidden="true">O</span>
-                  <span class="char-fill" aria-hidden="true">O</span>
-                </span>
-                <span class="anim-letter" data-letter="R" data-index="2">
-                  <span class="char-outline" aria-hidden="true">R</span>
-                  <span class="char-fill" aria-hidden="true">R</span>
-                </span>
-                <span class="anim-letter" data-letter="T" data-index="3">
-                  <span class="char-outline" aria-hidden="true">T</span>
-                  <span class="char-fill" aria-hidden="true">T</span>
-                </span>
-                <span class="anim-letter" data-letter="F" data-index="4">
-                  <span class="char-outline" aria-hidden="true">F</span>
-                  <span class="char-fill" aria-hidden="true">F</span>
-                </span>
-                <span class="anim-letter" data-letter="O" data-index="5">
-                  <span class="char-outline" aria-hidden="true">O</span>
-                  <span class="char-fill" aria-hidden="true">O</span>
-                </span>
-                <span class="anim-letter" data-letter="L" data-index="6">
-                  <span class="char-outline" aria-hidden="true">L</span>
-                  <span class="char-fill" aria-hidden="true">L</span>
-                </span>
-                <span class="anim-letter" data-letter="I" data-index="7">
-                  <span class="char-outline" aria-hidden="true">I</span>
-                  <span class="char-fill" aria-hidden="true">I</span>
-                </span>
-                <span class="anim-letter" data-letter="O" data-index="8">
-                  <span class="char-outline" aria-hidden="true">O</span>
-                  <span class="char-fill" aria-hidden="true">O</span>
-                </span>
-              </h1>
-            </div>
-
-          </div>
+        <div id="portfolio-row" class="portfolio-bottom text-4xl sm:text-6xl font-black text-white">
+          <span class="mp-char" style="transition-delay: 0.10s">P</span>
+          <span class="mp-char" style="transition-delay: 0.16s">O</span>
+          <span class="mp-char" style="transition-delay: 0.22s">R</span>
+          <span class="mp-char" style="transition-delay: 0.28s">T</span>
+          <span class="mp-char" style="transition-delay: 0.34s">F</span>
+          <span class="mp-char" style="transition-delay: 0.40s">O</span>
+          <span class="mp-char" style="transition-delay: 0.46s">L</span>
+          <span class="mp-char" style="transition-delay: 0.52s">I</span>
+          <span class="mp-char" style="transition-delay: 0.58s">O</span>
         </div>
 
-        <!-- Dual-Wing Creative AI Statement (Coming in from both sides) -->
-        <div class="hero-ai-split-container">
-          
-          <!-- Left Wing: Engaging Quote & Vision (Sliding in from Left) -->
-          <div class="hero-ai-wing wing-left slide-from-left">
-            <div class="hero-quote-pill">
-              <span class="quote-spark" aria-hidden="true">✦</span>
-              <span class="quote-text">“Where Vision Meets AI • Cinema Redefined”</span>
-            </div>
-            <p class="hero-ai-punchline">
-              Turning bold creative ideas into hyper-real commercial films with cutting-edge AI direction.
-            </p>
-          </div>
+        <div class="bloom-line"></div>
+      </div>
 
-          <!-- Creative Center Glowing Divider Beam -->
-          <div class="hero-ai-center-divider" aria-hidden="true">
-            <span class="divider-beam"></span>
-            <span class="divider-gem">✦</span>
-            <span class="divider-beam"></span>
-          </div>
+      <!-- Clean Interactive Controls -->
+      <div class="reveal-up d-4 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="#high-quality"
+          class="px-6 py-2.5 rounded-full bg-[#1C75BC] hover:bg-[#2589DA] text-white text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-[#1C75BC]/40 active:scale-95"
+        >
+          Explore Productions
+        </a>
 
-          <!-- Right Wing: Capabilities & Details (Sliding in from Right) -->
-          <div class="hero-ai-wing wing-right slide-from-right">
-            <p class="hero-ai-description">
-              Photorealistic AI video creation, neural CGI, and cinematic post-production engineered for visionary brands.
-            </p>
-            <div class="hero-ai-tags" aria-label="AI Highlights">
-              <span class="hero-ai-tag">✦ AI Cinema Direction</span>
-              <span class="hero-ai-tag">✦ Neural 3D Visuals</span>
-              <span class="hero-ai-tag">✦ Studio Sound Design</span>
-            </div>
-          </div>
+        <button
+          id="replay-zoom-btn"
+          type="button"
+          class="px-5 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.14] border border-white/15 text-slate-200 text-xs sm:text-sm font-medium transition-all backdrop-blur-md active:scale-95"
+        >
+          Replay Zoom
+        </button>
 
-        </div>
-
+        <button
+          id="replay-btn-hero"
+          type="button"
+          class="px-5 py-2.5 rounded-full bg-white/[0.04] hover:bg-white/[0.12] border border-white/10 text-slate-300 text-xs sm:text-sm font-medium transition-all backdrop-blur-md active:scale-95"
+        >
+          Replay Intro
+        </button>
       </div>
     </section>
 
