@@ -34,10 +34,6 @@ export function playIntro() {
     el.style.animation = '';
   });
 
-  overlayBloomTimer = setTimeout(() => {
-    overlay.classList.add('bloom-bg');
-  }, 750);
-
   introTimer = setTimeout(() => {
     overlay.classList.add('is-hidden');
     document.body.classList.add('hero-ready');

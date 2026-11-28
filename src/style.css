@@ -93,14 +93,14 @@ body.color-bloomed #cursor-glow {
   opacity: 1;
 }
 
-/* Black -> Zoom-In -> Color Bloom Intro Splash */
+/* Black -> Pure Solid Black Zoom-In Intro Splash (No Blue Shade) */
 #intro-overlay {
-  background: #000000;
-  transition: background 1.4s ease, opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.9s ease;
+  background: #000000 !important;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.9s ease;
 }
 
 #intro-overlay.bloom-bg {
-  background: radial-gradient(circle at center, #07162E 0%, #020612 75%);
+  background: #000000 !important;
 }
 
 #intro-overlay.is-hidden {
@@ -121,37 +121,30 @@ body.color-bloomed #cursor-glow {
 }
 
 .intro-aura {
-  position: absolute;
-  width: 520px;
-  height: 240px;
-  background: radial-gradient(ellipse, rgba(28, 117, 188, 0.55) 0%, transparent 70%);
-  filter: blur(46px);
-  opacity: 0;
-  transform: scale(0.4);
-  animation: auraZoomBloom 1.6s ease-out 0.75s forwards;
+  display: none !important;
 }
 
 @keyframes zoomColorBloom {
   0% {
     opacity: 0;
     transform: scale(0.35) translateZ(0);
-    filter: brightness(0.85);
+    filter: none;
   }
   38% {
     opacity: 1;
     transform: scale(0.78) translateZ(0);
-    filter: brightness(1);
+    filter: none;
   }
   100% {
     opacity: 1;
     transform: scale(1.02) translateZ(0);
-    filter: drop-shadow(0 0 38px rgba(28, 117, 188, 0.75));
+    filter: none;
   }
 }
 
 @keyframes auraZoomBloom {
   0% { opacity: 0; transform: scale(0.4); }
-  100% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 0; transform: scale(1); }
 }
 
 /* Hero Staggered Reveal */
