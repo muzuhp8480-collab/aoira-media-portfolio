@@ -75,13 +75,11 @@ function setupNavigation() {
 // 3. Render All Galleries in Requested Order:
 //    1st: High Quality
 //    2nd: Medium Quality
-//    3rd: Base Quality
-//    4th: Categories (Perfume, Product, Service, Food)
+//    3rd: Categories (Perfume, Product, Service, Food, Nesto)
 // =============================================================================
 function renderAllGalleries() {
   renderHighQuality();
   renderMediumQuality();
-  renderBaseQuality();
   renderCategoryVideos(activeCategoryKey);
 }
 
@@ -106,18 +104,6 @@ function renderMediumQuality() {
 
   const mediumVideos = PORTFOLIO_VIDEOS.filter(v => v.tier === 'medium');
   container.innerHTML = mediumVideos.map(video => createVideoCardMarkup(video)).join('');
-  attachCardEvents(container);
-}
-
-/**
- * 3rd Work Section: Base Quality Gallery
- */
-function renderBaseQuality() {
-  const container = document.getElementById('base-quality-gallery');
-  if (!container) return;
-
-  const baseVideos = PORTFOLIO_VIDEOS.filter(v => v.tier === 'base');
-  container.innerHTML = baseVideos.map(video => createVideoCardMarkup(video)).join('');
   attachCardEvents(container);
 }
 

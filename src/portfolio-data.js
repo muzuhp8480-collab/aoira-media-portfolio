@@ -18,10 +18,6 @@ export const QUALITY_TIERS = {
   medium: {
     id: "medium-quality",
     name: "Medium Quality"
-  },
-  base: {
-    id: "base-quality",
-    name: "Base Quality"
   }
 };
 
@@ -332,63 +328,11 @@ export const PORTFOLIO_VIDEOS = [
     duration: "0:35",
     tags: ["Fashion", "Speed Ramp", "Stylized Tone"],
     caption: "Speed-ramped fashion editorial video with custom color palettes and urban aesthetic."
-  },
-
-  // =========================================================================
-  // 3. BASE QUALITY
-  // =========================================================================
-  {
-    id: "base-01",
-    title: "Daily Social Pulse Reel",
-    tier: "base",
-    category: "product",
-    poster: "",
-    videoSource: "",
-    aspectRatio: "9:16",
-    duration: "0:25",
-    tags: ["9:16 Reel", "Fast Edits", "Kinetic Captions"],
-    caption: "High-energy social media reel with clean cuts and kinetic caption styling."
-  },
-  {
-    id: "base-02",
-    title: "Fast-Cut Brand Showcase",
-    tier: "base",
-    category: "service",
-    poster: "",
-    videoSource: "",
-    aspectRatio: "16:9",
-    duration: "0:45",
-    tags: ["16:9 Promo", "Brand Cut", "Starter Pack"],
-    caption: "Streamlined corporate and business promo reel with crisp audio and brand identity overlays."
-  },
-  {
-    id: "base-03",
-    title: "Product Feature Teaser",
-    tier: "base",
-    category: "product",
-    poster: "",
-    videoSource: "",
-    aspectRatio: "9:16",
-    duration: "0:15",
-    tags: ["9:16 Story", "E-Commerce", "Clean Motion"],
-    caption: "Punchy vertical teaser highlighting key product specs for Instagram & TikTok feeds."
-  },
-  {
-    id: "base-04",
-    title: "Event Recap & Highlight Reel",
-    tier: "base",
-    category: "service",
-    poster: "",
-    videoSource: "",
-    aspectRatio: "16:9",
-    duration: "1:00",
-    tags: ["Event Edit", "Rhythm Sync", "1080p FHD"],
-    caption: "Dynamic rhythm-synced event highlight capturing the energy and ambiance."
   }
 ];
 
 // =============================================================================
-// 4. CATEGORY-SPECIFIC SHOWCASE VIDEOS (Perfume, Product, Service, Food, Nesto)
+// 3. CATEGORY-SPECIFIC SHOWCASE VIDEOS (Perfume, Product, Service, Food, Nesto)
 // All using actual high quality productions with exact titles
 // =============================================================================
 export const CATEGORY_VIDEOS = {
