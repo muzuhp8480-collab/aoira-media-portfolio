@@ -1046,6 +1046,7 @@ body.color-bloomed .bloom-line {
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
+  z-index: 4;
 }
 
 .badge-ratio, .badge-duration {
@@ -1240,11 +1241,29 @@ body.color-bloomed .bloom-line {
   z-index: 3;
 }
 
-.video-card-preview-media {
+.video-card-poster-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.video-card-preview-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 2;
+  background: transparent;
 }
 
 .card-play-hover-overlay {
@@ -1256,13 +1275,17 @@ body.color-bloomed .bloom-line {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(9, 23, 40, 0.3);
+  background: rgba(9, 23, 40, 0.28);
   transition: background 0.2s ease;
-  z-index: 2;
+  z-index: 3;
+}
+
+.video-card-thumb-wrap:hover .video-card-poster-img {
+  transform: scale(1.05);
 }
 
 .video-card-thumb-wrap:hover .card-play-hover-overlay {
-  background: rgba(9, 23, 40, 0.15);
+  background: rgba(9, 23, 40, 0.12);
 }
 
 .hq-screen-title {
@@ -2150,6 +2173,23 @@ body.color-bloomed .bloom-line {
 
   .mesh-orb-3, .mesh-orb-4 {
     display: none;
+  }
+}
+
+@media (hover: none), (max-width: 768px) {
+  /* On touch & mobile devices, show crisp picture posters directly to eliminate black boxes and lag */
+  .video-card-preview-media {
+    display: none !important;
+  }
+  .video-card-poster-img {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
   }
 }
 

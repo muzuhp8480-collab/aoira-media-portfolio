@@ -9,6 +9,21 @@ function videoStreamPlugin() {
       server.middlewares.use((req, res, next) => {
         const rawUrl = req.url ? req.url.split('?')[0] : '';
         const decodedUrl = decodeURIComponent(rawUrl);
+        if (decodedUrl.startsWith('/posters/')) {
+          const filePath = path.join(process.cwd(), 'public', decodedUrl);
+          if (fs.existsSync(filePath)) {
+            const stat = fs.statSync(filePath);
+            if (stat.isFile()) {
+              res.writeHead(200, {
+                'Content-Length': stat.size,
+                'Content-Type': 'image/jpeg',
+                'Cache-Control': 'public, max-age=31536000',
+              });
+              fs.createReadStream(filePath).pipe(res);
+              return;
+            }
+          }
+        }
         if (decodedUrl.startsWith('/videos/')) {
           const filePath = path.join(process.cwd(), 'public', decodedUrl);
           if (fs.existsSync(filePath)) {

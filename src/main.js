@@ -167,13 +167,22 @@ function renderCategoryVideos(categoryKey) {
   }, 120);
 }
 
+export function getPosterUrl(videoSource) {
+  if (!videoSource) return null;
+  const fileName = videoSource.split('/').pop();
+  const baseName = fileName.substring(0, fileName.lastIndexOf('.')).trim();
+  return `/posters/${encodeURIComponent(baseName)}.jpg`;
+}
+
 function createVideoCardMarkup(video) {
   const hasVideo = Boolean(video.videoSource);
+  const posterUrl = video.poster || (hasVideo ? getPosterUrl(video.videoSource) : null);
   return `
     <article class="video-card" data-video-id="${video.id}">
       <div class="video-card-thumb-wrap" data-play-id="${video.id}">
         ${hasVideo ? `
-          <video class="video-card-preview-media" src="${video.videoSource}" muted loop playsinline preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
+          ${posterUrl ? `<img class="video-card-poster-img" src="${posterUrl}" alt="${video.title} Poster" loading="lazy" />` : ''}
+          <video class="video-card-preview-media" src="${video.videoSource}" poster="${posterUrl || ''}" muted loop playsinline preload="none" onmouseenter="this.play()" onmouseleave="this.pause()"></video>
           <div class="card-play-hover-overlay">
             <div class="placeholder-play-circle" title="Play ${video.title}">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -368,8 +377,9 @@ function openVideoModal(video) {
   viewport.classList.toggle('ratio-9-16', is916);
 
   if (video.videoSource) {
+    const posterUrl = video.poster || getPosterUrl(video.videoSource);
     viewport.innerHTML = `
-      <video src="${video.videoSource}" controls autoplay playsinline style="width:100%; height:100%; max-height:80vh; object-fit:contain; border-radius:12px; background:#000;"></video>
+      <video src="${video.videoSource}" poster="${posterUrl || ''}" controls autoplay playsinline style="width:100%; height:100%; max-height:80vh; object-fit:contain; border-radius:12px; background:#000;"></video>
     `;
     const videoEl = viewport.querySelector('video');
     videoEl?.addEventListener('loadedmetadata', () => {
